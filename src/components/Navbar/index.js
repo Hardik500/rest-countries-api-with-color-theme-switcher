@@ -9,17 +9,20 @@ import Typography from '../Helper/Typography';
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 30px 15px;
+    padding: 30px 20px;
 `
 
 const NightModeBtn = styled.button`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background: none;
     border: none;
-    min-width: 100px;
     cursor: pointer;
+
+    > svg {
+        margin-right: 10px;
+    }
 `
 
 export default function Navbar({ darkThemeEnabled, toggleDarkTheme }) {
@@ -27,14 +30,14 @@ export default function Navbar({ darkThemeEnabled, toggleDarkTheme }) {
 
     return (
         <Wrapper style={{ background: theme.secondary }}>
-            <Typography variant="h4" fontWeight={600}>Where in the world?</Typography>
+            <Typography variant="h4" fontWeight={800}>Where in the world?</Typography>
 
             <NightModeBtn onClick={toggleDarkTheme} style={{color: theme.color}}>
                 {
                     darkThemeEnabled ?
-                        (<><BsMoon /> <Typography variant="h5" fontWeight={600}>Dark Mode</Typography></>)
+                        (<><BsMoon size={15}/> <Typography variant="h4" fontWeight={600}>Dark Mode</Typography></>)
                         :
-                        (<><BiSun /> <Typography variant="h5" fontWeight={600}>Light Mode</Typography></>)
+                        (<><BiSun size={15}/> <Typography variant="h4" fontWeight={600}>Light Mode</Typography></>)
                 }
             </NightModeBtn>
         </Wrapper>

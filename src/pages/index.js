@@ -1,44 +1,36 @@
-import * as React from "react"
-import { jsx, ThemeProvider, useTheme } from '@emotion/react'
 import '../style.css'
 
-const white = '#FFFFFF';
-const black = "#161617";
-const gray = "#F8F8F9";
+import * as React from "react"
+import styled from "@emotion/styled"
 
-const themeLight = {
-  background: gray,
-  body: black
-};
+import Layout from '../components/Layout';
+import CountryCard from '../components/CountryCard';
 
-const themeDark = {
-  background: black,
-  body: white
-};
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`
 
-const ChildComponent = ({darkThemeEnabled, toggleDarkTheme}) => {
-  const theme = useTheme()
-
-  return (
-    <div>
-      <h1 style={{background: theme.background, color: theme.body}}>Hello World</h1>
-      <button onClick={() => toggleDarkTheme(!darkThemeEnabled)}>Change Theme</button>
-    </div>
-  )
-}
-
-// markup
 const IndexPage = () => {
-  const [darkThemeEnabled, toggleDarkTheme] = React.useState(true);
-  const theme = darkThemeEnabled ? themeDark : themeLight;
+  const [countriesData, setCountriesData] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      const result = await fetch("https://restcountries.eu/rest/v2/all?fields=name;capital;region;population;flag");
+      const data = await result.json()
+      setCountriesData(data);
+    }
+
+    fetchData();
+  }, [])
 
   return (
-    <ThemeProvider theme={theme}>
-      <main style={{ background: theme.background}}>
-        <title>Home Page</title>
-        <ChildComponent darkThemeEnabled={darkThemeEnabled} toggleDarkTheme={toggleDarkTheme}/>
-      </main>
-    </ThemeProvider>
+    <Layout>
+      <Wrapper>
+      {countriesData.length && countriesData.map((countryData, index) => <CountryCard data={countryData} key={index}/>)}
+      </Wrapper>
+    </Layout>
   )
 }
 
