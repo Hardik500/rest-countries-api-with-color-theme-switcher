@@ -1,13 +1,16 @@
 import * as React from "react"
+import { Link } from "gatsby"
 import { useTheme } from '@emotion/react'
 import styled from "@emotion/styled"
+import slugify from 'slugify'
 
 import Typography from '../Helper/Typography';
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 30px 50px;
+    margin: 30px 100px 30px 0;
+    border-radius: 5px;
     flex-direction: column;
     background: ${props => props.theme.secondary ?? "white"};
     box-shadow: 0px 0px 0px 10px ${props => props.theme.primary ?? "white"};
@@ -15,16 +18,20 @@ const Wrapper = styled.div`
     cursor: pointer;
 `
 
-const ImageWrapper = styled.img`
-    max-width: 100%;
+export const ImageWrapper = styled.img`
+    height: 200px;
+    width: 300px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    object-fit: cover;
 `
 
-const BodyWrapper = styled.div`
+export const BodyWrapper = styled.div`
     padding: 20px 20px 40px 20px;
     background: inherit;
 `
 
-const TextWrapper = styled.div`
+export const TextWrapper = styled.div`
     display: flex;
     margin: 5px 0;
     background: inherit;
@@ -36,23 +43,25 @@ export default function CountryCard({ data }) {
 
     return (
         <Wrapper theme={theme}>
-            <ImageWrapper src={flag} />
-            <BodyWrapper>
-                <Typography variant="h3" fontWeight={800}>{name}</Typography>
-                <br/>
-                <TextWrapper>
-                    <Typography variant="h4" fontWeight={600}>Population:&nbsp;</Typography>
-                    <Typography variant="h4">{population}</Typography>
-                </TextWrapper>
-                <TextWrapper>
-                    <Typography variant="h4" fontWeight={600}>Region:&nbsp;</Typography>
-                    <Typography variant="h4">{region}</Typography>
-                </TextWrapper>
-                <TextWrapper>
-                    <Typography variant="h4" fontWeight={600}>Capital:&nbsp;</Typography>
-                    <Typography variant="h4">{capital}</Typography>
-                </TextWrapper>
-            </BodyWrapper>
+            <Link to={`/country/${slugify(name, {lower: true})}`}>
+                <ImageWrapper src={flag} />
+                <BodyWrapper>
+                    <Typography variant="h3" fontWeight={800}>{name}</Typography>
+                    <br/>
+                    <TextWrapper>
+                        <Typography variant="h4" fontWeight={600}>Population:&nbsp;</Typography>
+                        <Typography variant="h4">{population}</Typography>
+                    </TextWrapper>
+                    <TextWrapper>
+                        <Typography variant="h4" fontWeight={600}>Region:&nbsp;</Typography>
+                        <Typography variant="h4">{region}</Typography>
+                    </TextWrapper>
+                    <TextWrapper>
+                        <Typography variant="h4" fontWeight={600}>Capital:&nbsp;</Typography>
+                        <Typography variant="h4">{capital}</Typography>
+                    </TextWrapper>
+                </BodyWrapper>
+            </Link>
         </Wrapper>
     )
 }

@@ -34,7 +34,7 @@ export default function Layout({ children }) {
             <Wrapper>
                 <Global
                     styles={css`
-                        div {
+                        body {
                             background: ${theme.primary};
                             color: ${theme.color};
                         }
