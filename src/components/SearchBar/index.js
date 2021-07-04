@@ -9,11 +9,11 @@ const Wrapper = styled.div`
     background: ${props => props.theme.secondary ?? "white"};
     color: ${props => props.theme.color ?? "white"};
     border-radius: 5px;
-    padding: 10px 15px;
+    padding: 5px 15px;
     width: 100%;
     
     @media (min-width: 1440px) {
-        min-width: 500px;
+        max-width: 500px;
     }
 `
 

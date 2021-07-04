@@ -23,7 +23,7 @@ export const ImageWrapper = styled.img`
     max-width: 350px;
 
     @media (min-width: 1440px) {
-        max-width: 750px;
+        max-width: 500px;
         margin-right: 100px;
     }
 `

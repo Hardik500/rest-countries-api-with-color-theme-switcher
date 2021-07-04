@@ -9,7 +9,7 @@ import Typography from '../Helper/Typography';
 export const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 30px 100px 30px 0;
+    margin: 30px 0px;
     border-radius: 5px;
     flex-direction: column;
     background: ${props => props.theme.secondary ?? "white"};
