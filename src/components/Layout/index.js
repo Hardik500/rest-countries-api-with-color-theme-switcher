@@ -2,6 +2,7 @@ import React from "react"
 import { Global, css } from "@emotion/react"
 import styled from "@emotion/styled"
 import { ThemeProvider } from '@emotion/react'
+import useStickyState from '../Context/StickyState';
 
 import Navbar from '../Navbar';
 
@@ -22,12 +23,13 @@ const Wrapper = styled("div")`
 `
 
 export default function Layout({ children }) {
-    const [darkThemeEnabled, setDarkTheme] = React.useState(true);
+    const [darkThemeEnabled, setDarkTheme] = useStickyState(true, 'theme');
     const theme = darkThemeEnabled ? themeDark : themeLight;
 
     const toggleDarkTheme = () => {
         setDarkTheme(!darkThemeEnabled);
     }
+
 
     return (
         <ThemeProvider theme={theme}>
