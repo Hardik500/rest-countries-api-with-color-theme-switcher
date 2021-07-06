@@ -4,6 +4,8 @@ import * as React from "react"
 import fetch from 'isomorphic-fetch';
 import useSWR from 'swr'
 import styled from "@emotion/styled"
+import { useTheme } from '@emotion/react'
+import { MagicSpinner } from "react-spinners-kit";
 
 import SearchBar from '../components/SearchBar';
 import FilterDropdown from '../components/FilterDropdown';
@@ -41,19 +43,23 @@ const CountryWrapper = styled.div`
   }
 `
 
+const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+`
+
 const fetcher = url => fetch(url).then(r => r.json())
 
 const IndexPage = () => {
+  const theme = useTheme()
   const [searchText, setSearchText] = React.useState("");
   const [dropdownValue, setDropdownValue] = React.useState("");
   const { data: countriesData, error } = useSWR('https://restcountries.eu/rest/v2/all?fields=name;capital;region;population;flag', fetcher)
   
-  React.useEffect(() => {
-    console.log(dropdownValue);
-  }, [dropdownValue])
-
   if (error) return "An error has occurred.";
-  if (!countriesData) return "Loading...";
+  if (!countriesData) return <LoaderContainer><MagicSpinner size={100} color={theme.color} loading={true} /></LoaderContainer>
 
 
   return (

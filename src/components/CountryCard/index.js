@@ -44,7 +44,7 @@ export default function CountryCard({ data }) {
     return (
         <Wrapper theme={theme}>
             <Link to={`/country/${slugify(name, {lower: true})}`}>
-                <ImageWrapper src={flag} />
+                <ImageWrapper src={flag} alt={name}/>
                 <BodyWrapper>
                     <Typography variant="h3" fontWeight={800}>{name}</Typography>
                     <br/>

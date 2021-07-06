@@ -9,3 +9,16 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+.loaded {
+    max-height: 350px;
+    max-width: 500px;
+    min-width: 300px;
+    margin-right: 100px;
+}
+
+@media (max-width: 1440px) {
+    .loaded {
+        margin-bottom: 25px;
+    }
+}

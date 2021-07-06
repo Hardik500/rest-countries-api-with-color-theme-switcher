@@ -63,7 +63,7 @@ const ClickAreaDropdown = styled.div`
             list-style: none;
             padding: 0.3rem 1.25rem 0.3rem 1.5rem;
             cursor: pointer;
-            &:first-child {
+            &:first-of-type {
                 padding-top: 1rem;
             }
             &:last-child {
