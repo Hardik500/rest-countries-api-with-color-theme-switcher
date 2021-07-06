@@ -47,7 +47,6 @@ const LoaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 50vh;
 `
 
 const fetcher = url => fetch(url).then(r => r.json())
@@ -59,8 +58,7 @@ const IndexPage = () => {
   const { data: countriesData, error } = useSWR('https://restcountries.eu/rest/v2/all?fields=name;capital;region;population;flag', fetcher)
   
   if (error) return "An error has occurred.";
-  if (!countriesData) return <LoaderContainer><MagicSpinner size={100} color={theme.color} loading={true} /></LoaderContainer>
-
+  if (!countriesData || countriesData.length === 0) return "Loading...";
 
   return (
       <Wrapper>

@@ -127,7 +127,7 @@ export default function CountryCard({ data }) {
                             </TextWrapper>
                             <TextWrapper>
                                 <Typography variant="h4" fontWeight={600}>Population:&nbsp;</Typography>
-                                <Typography variant="h4">{population.toLocaleString()}</Typography>
+                                <Typography variant="h4">{population?.toLocaleString()}</Typography>
                             </TextWrapper>
                             <TextWrapper>
                                 <Typography variant="h4" fontWeight={600}>Region:&nbsp;</Typography>
@@ -145,15 +145,15 @@ export default function CountryCard({ data }) {
                         <FlexDiv>
                             <TextWrapper>
                                 <Typography variant="h4" fontWeight={600}>Top Level Domain:&nbsp;</Typography>
-                                <Typography variant="h4">{topLevelDomain[0]}</Typography>
+                                <Typography variant="h4">{topLevelDomain?.[0]}</Typography>
                             </TextWrapper>
                             <TextWrapper>
                                 <Typography variant="h4" fontWeight={600}>Currencies:&nbsp;</Typography>
-                                <Typography variant="h4">{currencies.map(({ code }, index) => code + ((index !== currencies.length - 1) ? ", " : ""))}</Typography>
+                                <Typography variant="h4">{currencies?.map(({ code }, index) => code + ((index !== currencies.length - 1) ? ", " : ""))}</Typography>
                             </TextWrapper>
                             <TextWrapper>
                                 <Typography variant="h4" fontWeight={600}>Languages:&nbsp;</Typography>
-                                <Typography variant="h4">{languages.map(({ name }, index) => name + ((index !== languages.length - 1) ? ", " : ""))}</Typography>
+                                <Typography variant="h4">{languages?.map(({ name }, index) => name + ((index !== languages.length - 1) ? ", " : ""))}</Typography>
                             </TextWrapper>
                         </FlexDiv>
                     </FlexWrapper>
@@ -162,7 +162,7 @@ export default function CountryCard({ data }) {
                             <Typography variant="h3" fontWeight={600}>Border Countries:&nbsp;</Typography>
                         </TextWrapper>
                         <TextWrapper>
-                            <Typography variant="h4">{borders.map((country, index) => <CountryWrapper key={index} theme={theme}><Link to={`/country/${slugify(country, { lower: true })}`}>{country}</Link></CountryWrapper>)}</Typography>
+                            <Typography variant="h4">{borders?.map((country, index) => <CountryWrapper key={index} theme={theme}><Link to={`/country/${slugify(country, { lower: true })}`}>{country}</Link></CountryWrapper>)}</Typography>
                         </TextWrapper>
                     </FlexWrapper>
                 </BodyWrapper>

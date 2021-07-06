@@ -27,6 +27,8 @@
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
     "react-spinners-kit": "^1.9.1",
+    "slash": "2.0.0",
+    "slug": "^5.1.0",
     "slugify": "^1.5.3",
     "swr": "^0.5.6"
   },
