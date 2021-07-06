@@ -4,6 +4,7 @@ import { useTheme } from '@emotion/react'
 import styled from "@emotion/styled"
 import slugify from 'slugify'
 import { BsArrowLeft } from 'react-icons/bs';
+import { StageSpinner } from "react-spinners-kit";
 
 import Typography from '../Helper/Typography';
 
@@ -12,6 +13,7 @@ export const Wrapper = styled.div`
     flex-direction: column;
     margin: 30px 50px;
     cursor: pointer;
+    transition: all 0.66s ease-out;
     
     @media (min-width: 1440px) {
         margin: 75px 100px;
@@ -39,7 +41,6 @@ export const BackButton = styled.button`
 
 export const ImageWrapper = styled.img`
     max-width: 350px;
-    overflow: hidden;
     transition: all 0.66s ease-out;
     
     @media (min-width: 1440px) {
@@ -51,6 +52,7 @@ const FlexWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: baseline;
+    margin: 30px 0;
 
     @media (min-width: 1440px) {
         flex-direction: row;
@@ -60,8 +62,11 @@ const FlexWrapper = styled.div`
 `
 
 const FlexDiv = styled.div`
+    margin-top: 20px;
+
     @media (min-width: 1440px) {
         margin-left: 20px;
+        margin-top: 0px;
     }
 `
 
@@ -108,6 +113,9 @@ export default function CountryCard({ data }) {
                 </BackButton>
             </Wrapper>
             <Wrapper theme={theme}>
+                {!imageLoaded && <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: '500px'}}>
+                    <StageSpinner loading={!imageLoaded}/>
+                </div>}
                 <ImageWrapper src={flag} className={imageLoaded ? 'loaded' : ''} onLoad={() => setImageLoaded(true)}/>
                 <BodyWrapper>
                     <Typography variant="h2" fontWeight={800}>{name}</Typography>
@@ -151,7 +159,7 @@ export default function CountryCard({ data }) {
                     </FlexWrapper>
                     <FlexWrapper>
                         <TextWrapper style={{ minWidth: '150px' }}>
-                            <Typography variant="h4" fontWeight={600}>Border Countries:&nbsp;</Typography>
+                            <Typography variant="h3" fontWeight={600}>Border Countries:&nbsp;</Typography>
                         </TextWrapper>
                         <TextWrapper>
                             <Typography variant="h4">{borders.map((country, index) => <CountryWrapper key={index} theme={theme}><Link to={`/country/${slugify(country, { lower: true })}`}>{country}</Link></CountryWrapper>)}</Typography>

@@ -27,7 +27,7 @@ const CustomDropdown = styled.div`
     height: 100%;
     position: relative;
     width: 100%;
-    font-weight: 600;
+    font-weight: 500;
 `
 
 const ClickAreaDropdown = styled.div`
@@ -105,7 +105,7 @@ export default function FilterDropdown({ setDropdownValue }) {
     return (
         <Wrapper theme={theme}>
             <CustomDropdown>
-                <ClickAreaDropdown onClick={toggleDropdown} theme={theme}>
+                <ClickAreaDropdown onClick={toggleDropdown} theme={theme} onKeyDown={(e) => {e.key === 13 && toggleDropdown()}}>
                     <span>{selectedValue || 'Filter By Region'}</span>
                     {dropdownOpen ? (
                         <IoIosArrowUp/>
@@ -113,7 +113,7 @@ export default function FilterDropdown({ setDropdownValue }) {
                         <IoIosArrowDown />
                     )}
                     <ul className={dropdownOpen ? 'open' : ''}>
-                        {(selectedValue && <li onClick={() => handleSelect('')}>
+                        {(selectedValue && <li onClick={() => handleSelect('')} onKeyDown={() => handleSelect('')} aria-hidden="true">
                             Filter By Region
                         </li>)}
                         {options.map(({ value, label }) => (
@@ -121,6 +121,8 @@ export default function FilterDropdown({ setDropdownValue }) {
                                 key={label}
                                 className={label === selectedValue ? 'selected' : ''}
                                 onClick={() => handleSelect(label)}
+                                onKeyDown={() => handleSelect(label)}
+                                aria-hidden="true"
                             >
                                 {label}
                             </li>
