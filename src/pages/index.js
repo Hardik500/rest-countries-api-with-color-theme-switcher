@@ -20,16 +20,25 @@ const Wrapper = styled.div`
 const FilterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-
+  margin: 0 20px;
+  
   @media (max-width: 1440px) {
+    margin: 0;
     flex-direction: column;
   }
 `
 
 const CountryWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(340px, 1fr) );
+  justify-items: center;
+  transition: all 0.66s ease-out;
+
+  @media (max-width: 620px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 `
 
 const fetcher = url => fetch(url).then(r => r.json())

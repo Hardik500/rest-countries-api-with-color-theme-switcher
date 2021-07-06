@@ -50,16 +50,16 @@ export default function CountryCard({ data }) {
                     <br/>
                     <TextWrapper>
                         <Typography variant="h4" fontWeight={600}>Population:&nbsp;</Typography>
-                        <Typography variant="h4">{population}</Typography>
+                        <Typography variant="h4">{population.toLocaleString()}</Typography>
                     </TextWrapper>
                     <TextWrapper>
                         <Typography variant="h4" fontWeight={600}>Region:&nbsp;</Typography>
                         <Typography variant="h4">{region}</Typography>
                     </TextWrapper>
-                    <TextWrapper>
+                    {capital && <TextWrapper>
                         <Typography variant="h4" fontWeight={600}>Capital:&nbsp;</Typography>
                         <Typography variant="h4">{capital}</Typography>
-                    </TextWrapper>
+                    </TextWrapper>}
                 </BodyWrapper>
             </Link>
         </Wrapper>
