@@ -8,9 +8,9 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "cross-env NODE_OPTIONS=\"-r esm\" gatsby develop",
+    "develop": "gatsby develop",
     "start": "gatsby develop",
-    "build": "cross-env NODE_OPTIONS=\"-r esm\" gatsby build",
+    "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
