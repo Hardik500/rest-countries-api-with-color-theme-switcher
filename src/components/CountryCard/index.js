@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { useTheme } from '@emotion/react'
 import styled from "@emotion/styled"
 import slug from 'slug'
+import LazyLoad from 'react-lazyload';
 
 import Typography from '../Helper/Typography';
 
@@ -37,14 +38,16 @@ export const TextWrapper = styled.div`
     background: inherit;
 `
 
-export default function CountryCard({ data }) {
+const CountryCard = ({ data }) => {
     const { name, capital, population, region, flag } = data;
     const theme = useTheme()
 
     return (
         <Wrapper theme={theme}>
             <Link to={`/country/${slug(name, {lower: true})}`}>
-                <ImageWrapper src={flag} alt={name}/>
+                <LazyLoad once={true} offset={50} width={450}>
+                    <ImageWrapper src={flag} alt={name}/>
+                </LazyLoad>
                 <BodyWrapper>
                     <Typography variant="h3" fontWeight={800}>{name}</Typography>
                     <br/>
@@ -65,3 +68,5 @@ export default function CountryCard({ data }) {
         </Wrapper>
     )
 }
+
+export default React.memo(CountryCard);

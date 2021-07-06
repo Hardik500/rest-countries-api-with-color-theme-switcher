@@ -58,7 +58,7 @@ const IndexPage = () => {
   const { data: countriesData, error } = useSWR('https://restcountries.eu/rest/v2/all?fields=name;capital;region;population;flag', fetcher)
   
   if (error) return "An error has occurred.";
-  if (!countriesData || countriesData.length === 0) return "Loading...";
+  if (!countriesData || countriesData.length === 0) return "Loading ...";
 
   return (
       <Wrapper>

@@ -30,8 +30,6 @@ exports.sourceNodes = (
 
                 const countryData = { ...country, borders: borderCountries }
 
-                console.log(countryData);
-
                 const nodeMeta = {
                     id: createNodeId(`country-id-${country.numericCode}`),
                     parent: null,

@@ -1,9 +1,10 @@
 import React from "react"
 import { Global, css } from "@emotion/react"
-import styled from "@emotion/styled"
 import { ThemeProvider } from '@emotion/react'
+import styled from "@emotion/styled"
 import useStickyState from '../Context/StickyState';
 
+import Meta from '../Meta'
 import Navbar from '../Navbar';
 
 const themeLight = {
@@ -41,6 +42,7 @@ export default function Layout({ children }) {
                             color: ${theme.color};
                         }
                 `}/>
+                <Meta/>
                 <Navbar darkThemeEnabled={darkThemeEnabled} toggleDarkTheme={toggleDarkTheme}/>
                 {children}
             </Wrapper>
