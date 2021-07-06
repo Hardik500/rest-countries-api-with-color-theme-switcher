@@ -36,7 +36,7 @@ export default function Navbar({ darkThemeEnabled, toggleDarkTheme }) {
     const theme = useTheme()
 
     return (
-        <Wrapper theme={theme}>
+        <Wrapper theme={theme} className="navbar">
             <Link to="/">
                 <Typography variant="h4" fontWeight={800}>Where in the world?</Typography>
             </Link>

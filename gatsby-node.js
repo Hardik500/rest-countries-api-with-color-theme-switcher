@@ -11,21 +11,40 @@ exports.sourceNodes = (
 
     return new Promise((resolve, reject) => {
         // Fetch data and return items array
-        axios.get(`${API}/all`).then(res => {
-            res.data.forEach(country => {
+        axios.get(`${API}/all`).then(async res => {
+            let countryMapping = {};
+
+            for (let i = 0; i < res.data.length; i++) {
+                const country = res.data[i];
+                countryMapping[country.alpha3Code] = country.name;
+            }
+
+            for (let i = 0; i < res.data.length; i++) {
+                let borderCountries = [];
+                const country = res.data[i];
+
+                for(let i = 0; i < country.borders.length; i++){
+                    let countryName = country.borders[i];
+                    borderCountries.push(countryMapping[countryName])
+                }
+
+                const countryData = { ...country, borders: borderCountries }
+
+                console.log(countryData);
+
                 const nodeMeta = {
                     id: createNodeId(`country-id-${country.numericCode}`),
                     parent: null,
                     children: [],
                     internal: {
                         type: "countries",
-                        content: JSON.stringify(country),
-                        contentDigest: createContentDigest(country),
+                        content: JSON.stringify(countryData),
+                        contentDigest: createContentDigest(countryData),
                     },
                 }
-                const node = Object.assign({}, country, nodeMeta)
+                const node = Object.assign({}, countryData, nodeMeta)
                 createNode(node)
-            })
+            }
             resolve()
         })
     })
@@ -79,7 +98,7 @@ exports.createPages = ({ graphql, actions }) => {
                         flag: node.flag,
                         currencies: node.currencies,
                         languages: node.languages,
-                        borders: [],
+                        borders: node.borders,
                         topLevelDomain: node.topLevelDomain,
                         nativeName: node.nativeName
                     },

@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, navigate } from "gatsby"
 import { useTheme } from '@emotion/react'
 import styled from "@emotion/styled"
-import slugify from 'slugify'
+import slug from 'slug'
 import { BsArrowLeft } from 'react-icons/bs';
 import { StageSpinner } from "react-spinners-kit";
 
@@ -102,7 +102,7 @@ export const CountryWrapper = styled.div`
 export default function CountryCard({ data }) {
     const { name, capital, population, region, subregion, nativeName, flag, currencies, languages, borders, topLevelDomain } = data;
     const theme = useTheme()
-    const [imageLoaded, setImageLoaded] = React.useState(false);
+    const [imageLoaded, setImageLoaded] = React.useState(true);
 
     return (
         <div>
@@ -113,10 +113,14 @@ export default function CountryCard({ data }) {
                 </BackButton>
             </Wrapper>
             <Wrapper theme={theme}>
-                {!imageLoaded && <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: '500px'}}>
-                    <StageSpinner loading={!imageLoaded}/>
-                </div>}
-                <ImageWrapper src={flag} className={imageLoaded ? 'loaded' : ''} onLoad={() => setImageLoaded(true)}/>
+                {!imageLoaded ?
+                    (
+                        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: '500px'}}><StageSpinner loading={!imageLoaded}/></div>
+                    ) : 
+                    (
+                        <ImageWrapper src={flag} alt={name} className={imageLoaded ? 'loaded' : ''} onLoadStart={() => setImageLoaded(false)} onLoad={() => setImageLoaded(true)}/>
+                    )
+                }
                 <BodyWrapper>
                     <Typography variant="h2" fontWeight={800}>{name}</Typography>
                     <FlexWrapper style={{ justifyContent: 'space-between' }}>
@@ -162,7 +166,7 @@ export default function CountryCard({ data }) {
                             <Typography variant="h3" fontWeight={600}>Border Countries:&nbsp;</Typography>
                         </TextWrapper>
                         <TextWrapper>
-                            <Typography variant="h4">{borders?.map((country, index) => <CountryWrapper key={index} theme={theme}><Link to={`/country/${slugify(country, { lower: true })}`}>{country}</Link></CountryWrapper>)}</Typography>
+                            <Typography variant="h4">{borders?.map((country, index) => <CountryWrapper key={index} theme={theme}><Link to={`/country/${slug(country, { lower: true })}`}>{country}</Link></CountryWrapper>)}</Typography>
                         </TextWrapper>
                     </FlexWrapper>
                 </BodyWrapper>

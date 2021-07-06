@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 import { useTheme } from '@emotion/react'
 import styled from "@emotion/styled"
-import slugify from 'slugify'
+import slug from 'slug'
 
 import Typography from '../Helper/Typography';
 
@@ -43,7 +43,7 @@ export default function CountryCard({ data }) {
 
     return (
         <Wrapper theme={theme}>
-            <Link to={`/country/${slugify(name, {lower: true})}`}>
+            <Link to={`/country/${slug(name, {lower: true})}`}>
                 <ImageWrapper src={flag} alt={name}/>
                 <BodyWrapper>
                     <Typography variant="h3" fontWeight={800}>{name}</Typography>
