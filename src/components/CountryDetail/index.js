@@ -11,7 +11,7 @@ import Typography from '../Helper/Typography';
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 30px 50px;
+    margin: 30px 30px;
     cursor: pointer;
     transition: all 0.66s ease-out;
     
@@ -26,12 +26,13 @@ export const BackButton = styled.button`
     border: none;
     background: ${props => props.theme.secondary ?? "white"};
     color: ${props => props.theme.color ?? "white"};
-    padding: 10px 25px;
+    box-shadow: 0 0 7px 5px ${props => props.theme.shadow ?? "white"};
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 110px;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
     
     @media (min-width: 1440px) {
@@ -93,7 +94,7 @@ export const TextWrapper = styled.div`
 export const CountryWrapper = styled.div`
     display: inline-block;
     background: ${props => props.theme.secondary ?? "white"};
-    box-shadow: 0px 0px 0px 10px ${props => props.theme.primary ?? "white"};
+    box-shadow: 0 0 7.5px 2px ${props => props.theme.shadow ?? "white"};
     margin: 5px 10px 5px 0;
     padding: 5px 15px;
     border-radius: 2px;
@@ -102,25 +103,19 @@ export const CountryWrapper = styled.div`
 export default function CountryCard({ data }) {
     const { name, capital, population, region, subregion, nativeName, flag, currencies, languages, borders, topLevelDomain } = data;
     const theme = useTheme()
-    const [imageLoaded, setImageLoaded] = React.useState(true);
+    const [imageLoaded, setImageLoaded] = React.useState(false);
 
     return (
         <div>
             <Wrapper theme={theme} style={{justifyContent: 'flex-start'}}>
                 <BackButton theme={theme} onClick={() => navigate(-1)}>
-                    <BsArrowLeft size={20}/>
-                    <Typography variant="h5" fontWeight={600}>Back</Typography>
+                    <BsArrowLeft size={25}/>
+                    <Typography variant="h4" fontWeight={600}>Back</Typography>
                 </BackButton>
             </Wrapper>
             <Wrapper theme={theme}>
-                {!imageLoaded ?
-                    (
-                        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: '500px'}}><StageSpinner loading={!imageLoaded}/></div>
-                    ) : 
-                    (
-                        <ImageWrapper src={flag} alt={name} className={imageLoaded ? 'loaded' : ''} onLoadStart={() => setImageLoaded(false)} onLoad={() => setImageLoaded(true)}/>
-                    )
-                }
+                {!imageLoaded && <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: '500px'}}><StageSpinner loading={!imageLoaded}/></div>}
+                <ImageWrapper src={flag} alt={name} className={imageLoaded ? 'loaded' : ''} onLoad={() => setImageLoaded(true)}/>
                 <BodyWrapper>
                     <Typography variant="h2" fontWeight={800}>{name}</Typography>
                     <FlexWrapper style={{ justifyContent: 'space-between' }}>

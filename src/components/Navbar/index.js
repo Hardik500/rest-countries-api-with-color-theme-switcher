@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     margin-bottom: 50px;
     padding: 30px 20px;
     background: ${props => props.theme.secondary ?? "white"};
+    box-shadow: 0 0 20px 2px ${props => props.theme.shadow ?? "white"};
     
     @media (min-width: 1440px) {
         padding: 20px 100px;

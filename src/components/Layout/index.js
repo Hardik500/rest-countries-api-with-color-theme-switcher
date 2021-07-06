@@ -10,13 +10,15 @@ import Navbar from '../Navbar';
 const themeLight = {
     primary: 'hsl(0, 0%, 98%)',
     secondary: 'hsl(0, 0%, 100%)',
-    color: 'hsl(200, 15%, 8%)'
+    color: 'hsl(200, 15%, 8%)',
+    shadow: 'hsl(0, 0%, 90%)'
 };
 
 const themeDark = {
     primary: 'hsl(207, 26%, 17%)',
     secondary: 'hsl(209, 23%, 22%)',
-    color: 'hsl(0, 0%, 100%)'
+    color: 'hsl(0, 0%, 100%)',
+    shadow: 'hsl(203, 29%, 14%)'
 };
 
 const Wrapper = styled("div")`

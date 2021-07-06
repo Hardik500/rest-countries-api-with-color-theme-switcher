@@ -14,9 +14,9 @@ export const Wrapper = styled.div`
     border-radius: 5px;
     flex-direction: column;
     background: ${props => props.theme.secondary ?? "white"};
-    box-shadow: 0px 0px 0px 10px ${props => props.theme.primary ?? "white"};
     max-width: 300px;
     cursor: pointer;
+    box-shadow: 0 0 20px 2px ${props => props.theme.shadow ?? "white"};
 `
 
 export const ImageWrapper = styled.img`

@@ -11,6 +11,7 @@ const Wrapper = styled.div`
     border-radius: 2.5px;
     padding: 5px 15px;
     width: 200px;
+    box-shadow: 0 0 20px 2px ${props => props.theme.shadow ?? "white"};
 
     @media (max-width: 1440px) {
         margin-top: 20px;
@@ -39,9 +40,10 @@ const ClickAreaDropdown = styled.div`
     background: ${props => props.theme.secondary ?? "white"};
     border-radius: 2.5px;
     padding: 0 1.25rem 0 0.75rem;
-
+    
     ul {
         position: absolute;
+        box-shadow: 0 0 20px 2px ${props => props.theme.shadow ?? "white"};
         top: 4rem;
         left: -0.85rem;
         background: ${props => props.theme.secondary ?? "white"};

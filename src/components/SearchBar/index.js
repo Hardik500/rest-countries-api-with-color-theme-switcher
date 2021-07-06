@@ -11,6 +11,7 @@ const Wrapper = styled.div`
     border-radius: 5px;
     padding: 5px 15px;
     width: 90%;
+    box-shadow: 0 0 20px 2px ${props => props.theme.shadow ?? "white"};
     
     @media (min-width: 1440px) {
         max-width: 500px;
